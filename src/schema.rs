@@ -10,7 +10,7 @@ table! {
     users (id) {
         id -> Int4,
         name -> Varchar,
-        username -> Nullable<Varchar>,
+        username -> Varchar,
     }
 }
 
