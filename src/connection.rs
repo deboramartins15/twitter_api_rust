@@ -22,6 +22,7 @@ pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<PgConnection>>);
 
 impl<'a, 'r> FromRequest<'a, 'r> for DbConn {
     type Error = ();
+
     fn from_request(request: &'a Request<'r>) -> request::Outcome<DbConn, Self::Error> {
         let pool = request.guard::<State<Pool>>()?;
         match pool.get() {
@@ -33,6 +34,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for DbConn {
 
 impl Deref for DbConn {
     type Target = PgConnection;
+
     fn deref(&self) -> &Self::Target {
         &self.0
     }

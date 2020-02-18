@@ -1,6 +1,6 @@
 table! {
     tweets (id) {
-        id -> Nullable<Int4>,
+        id -> Int4,
         user_id -> Int4,
         content -> Varchar,
     }
@@ -8,7 +8,7 @@ table! {
 
 table! {
     users (id) {
-        id -> Nullable<Int4>,
+        id -> Int4,
         name -> Varchar,
         username -> Nullable<Varchar>,
     }
