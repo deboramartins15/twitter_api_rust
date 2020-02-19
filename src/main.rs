@@ -17,6 +17,14 @@ mod connection;
 
 fn main() {
     dotenv().ok();
-    users::router::create_routes();
-    tweets::router::create_routes();
+    rocket::ignite()
+        .manage(connection::init_pool())
+        .mount("/tweets",
+               routes![tweets::handler::all,
+               tweets::handler::get,
+               tweets::handler::post],
+        )
+	.mount("/user",
+               routes![users::handler::post]
+    ).launch();
 }
